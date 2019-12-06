@@ -17,4 +17,21 @@ Recommend :
 marked as `*` :  more difficult and not essential to the rest of the book.  These can be omitted on 1st reading. 
 
 
+# Part I: Tabular Solution Methods
+
+- solving simple RL problem 
+- solving MDP 
+    - dynamic programming
+    - Monte Carlo methods,
+    - temporal-difference learning 
+- combining those 3 methods to solve MDP
+
+## Chaper 2. Multi-armed Bandits
+
+
+
+
+
+
+
 
