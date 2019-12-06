@@ -22,11 +22,28 @@ marked as `*` :  more difficult and not essential to the rest of the book.  Thes
 - solving simple RL problem 
 - solving MDP 
     - dynamic programming
-    - Monte Carlo methods,
+        - well developed mathematically
+        - but require a complete and accurate model of the environment
+    - Monte Carlo methods
+        - don’t require a model and are conceptually simple
+        - but are not well suited for step-by-step incremental computation.
     - temporal-difference learning 
+        - require no model and are fully incremental
+        - but are more complex to analyze.
 - combining those 3 methods to solve MDP
 
 ## Chaper 2. Multi-armed Bandits
+
+
+choose of e 
+
+nonstationary problem
+
+step size 
+1.
+2.
+3.
+
 
 
 
