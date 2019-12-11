@@ -32,7 +32,7 @@
     ```
 
 - Exercise 2.5
-
+    - Q: (programming) Design and conduct an experiment to demonstrate the difficulties that sample-average methods have for nonstationary problems.
 
 
 
