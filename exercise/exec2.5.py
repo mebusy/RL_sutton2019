@@ -9,13 +9,13 @@ sigma = 0.6
 epsilon = 0.1
 
 nStep = 10000
-nExperiment = 30 #00 
+nExperiment = 20 #00 
 
 
 bMofified10Arm = True
 
-means_equal = np.array([ 1.0 ] * 10)
-means_random_walk = np.random.normal( loc=0.0, scale=0.01, size=( nExperiment , nStep , 10 ) )
+means_equal = np.array([ 1.0 ] * len(means))
+best_action_value = np.zeros( ( 2, nExperiment ) ) 
 
 def bandit( A) :
     if bMofified10Arm:
@@ -51,9 +51,9 @@ def sample_average_experiment( idx  ):
         averageRewards0[idx][i] = total/(i+1)
 
         if bMofified10Arm:
-            means_equal += means_random_walk[idx][i]
+            means_equal += np.random.normal( loc=0.0, scale=0.01, size=10 ) 
 
-
+    best_action_value[0][idx] = means_equal.max()
 
 
 # for constant step 
@@ -88,8 +88,9 @@ def constant_step_experiment( idx  ):
         averageRewards1[idx][i] = total/(i+1)
 
         if bMofified10Arm:
-            means_equal += means_random_walk[idx][i]
+            means_equal += np.random.normal( loc=0.0, scale=0.01, size=10 ) 
 
+    best_action_value[1][idx] = means_equal.max()
 
 
 if __name__ == "__main__" :
@@ -100,8 +101,8 @@ if __name__ == "__main__" :
     for i in xrange( nExperiment ):
         constant_step_experiment(i)
 
-    best_q =  1 + means_random_walk.sum( 1 ).max(1).mean()
-    print best_q
+    best_q = best_action_value.mean(1)
+
 
     averageReward4eachStep0 = averageRewards0.mean( 0 )
     averageReward4eachStep1 = averageRewards1.mean( 0 )
@@ -109,8 +110,9 @@ if __name__ == "__main__" :
     import matplotlib.pyplot as plt
     plt.plot( xrange( nStep ) ,    averageReward4eachStep0 )
     plt.plot( xrange( nStep ) ,    averageReward4eachStep1 )
-    plt.text( 8000,  best_q * 0.6 ,r'constant step-size' ,  color='green' )
-    plt.text( 4000,  best_q * 0.4 ,r'best action value:{}'.format( best_q ) ,  color='red' )
+
+    plt.text( 4000,  best_q[1] * 0.4 ,r'average sample best:{}'.format( best_q[0] ) ,  color='blue' )
+    plt.text( 4000,  best_q[1] * 0.35 ,r'const step-size best:{}'.format( best_q[1] ) ,  color='green' )
     plt.show()
 
 
