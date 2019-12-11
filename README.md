@@ -45,6 +45,10 @@ step size
 3.
 
 
+### 2.6 Optimistic Initial Values
+
+
+
 
 
 
