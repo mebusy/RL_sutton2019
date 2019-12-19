@@ -36,5 +36,12 @@
     - A: see [source code](exec2.5.py)
         - ![](exec2.5.png)
 
+- Exercise 2.6  Mysterious Spikes 
+    - Q: The results shown in Figure 2.3 should be quite reliable because they are averages over 2000 individual, randomly chosen 10-armed bandit tasks. Why, then, are there oscillations and spikes in the early part of the curve for the optimistic method? In other words, what might make this method perform particularly better or worse, on average, on particular early steps?
+    - A: Because of the optimistic initial values,  there are more explorations  on early steps , before the value estimates converge.
+        - It can explore the optimal action quickly, but the Q value dives down since the average algorithm. So it will have a high probability of choosing other non-optimal action in next 1~2 steps.
+
+- Exercise 2.7 Unbiased Constant-Step-Size Trick
+    - Q: However, sample averages are not a completely satisfactory solution because they may perform poorly on nonstationary problems. Is it possible to avoid the bias of constant step sizes while retaining their advantages on nonstationary problems? 
 
 
