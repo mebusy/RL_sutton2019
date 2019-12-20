@@ -43,5 +43,12 @@
 
 - Exercise 2.7 Unbiased Constant-Step-Size Trick
     - Q: However, sample averages are not a completely satisfactory solution because they may perform poorly on nonstationary problems. Is it possible to avoid the bias of constant step sizes while retaining their advantages on nonstationary problems? 
+    - A:
+        - ![](exec2.7.png)
+        - show as the pic,  the step *β* decreases exponentially from 1 to 0.1. 
+        - The initial value term `(1-α)ⁿQ₁`  disappears since the step 1-β₁ equals 0.  But the initial value still works in the *error* terms. 
+        - We benefit from the initial value at the beginning steps, and eventually, after about 20 steps , it works just as the constant step size method.
+
+
 
 

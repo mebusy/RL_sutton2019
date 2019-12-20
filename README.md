@@ -19,8 +19,13 @@ marked as `*` :  more difficult and not essential to the rest of the book.  Thes
 
 # Part I: Tabular Solution Methods
 
-- solving simple RL problem 
-- solving MDP 
+[Part I](book/Part%20I%20Tabular%20Solution%20Methods/Part%20I.pdf)
+
+The simplest RL forms: the approximate value functions to be represented as *arrays*, or *tables* , and can ofen find *exact solution*, while general RL can only find approximate solutions. 
+
+1. bandit problem
+    - only a single state
+2. MDP ,  3 fundamental mothods to solve MDP:
     - dynamic programming
         - well developed mathematically
         - but require a complete and accurate model of the environment
@@ -30,10 +35,11 @@ marked as `*` :  more difficult and not essential to the rest of the book.  Thes
     - temporal-difference learning 
         - require no model and are fully incremental
         - but are more complex to analyze.
-- combining those 3 methods to solve MDP
+3. combining those 3 methods to solve MDP
 
 ## Chaper 2. Multi-armed Bandits
 
+[Chapter 2](book/Part%20I%20Tabular%20Solution%20Methods/02.%20Multi-armed%20Bandits.pdf)
 
 choose of e 
 
