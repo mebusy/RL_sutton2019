@@ -49,6 +49,25 @@
         - The initial value term `(1-α)ⁿQ₁`  disappears since the step 1-β₁ equals 0.  But the initial value still works in the *error* terms. 
         - We benefit from the initial value at the beginning steps, and eventually, after about 20 steps , it works just as the constant step size method.
 
+- Exercise 2.8: UCB Spikes
+    - A:
+        - since all actions were selected at the fist 10 steps,  so the average reward is near 0.
+        - at 11th step,  there is a high probability that the optimal action or suboptimal action  will be choosed, since all *square root* term are same for all actions. So the average reward increases rapidly.
+        - at 12 the steps, the *square root* term for A₁₁ is 2* sqrt( ln(12)/2 ) = 2.23,  for other actions is  2* sqrt( ln(12)/1 ) = 3.15 , other actions have big probability to be chosen, and the average reward normally decreases.
+            - but if c=1,  the term is about 1.55 / 1.58, respectively,  other actions are less likely to be chosen, and the spike is less prominent.
+
+- Exercise 2.9 
+    - Q: Show that in the case of two actions, the soft-max distribution is the same as that given by the logistic, or sigmoid, function often used in statistics and artificial neural networks.
+    - A: 
+        - In the case of two actions, if the preference value of the actions is a and b,  a≥b.  Then ,
+        - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/softmax-sigmoid.gif)
+        - 
+        ```python
+        softmax( np.array([14,12]) )  # array([ 0.88079708,  0.11920292])
+        sigmoid( 12-14 )        # 0.11920292202211755
+        ```
+
+- Exercise
 
 
 

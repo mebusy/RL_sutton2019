@@ -55,6 +55,8 @@ step size
 
 
 
+[soft-max](https://github.com/mebusy/notes/blob/master/dev_notes/softmax.md)
+
 
 
 
