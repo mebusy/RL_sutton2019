@@ -67,7 +67,14 @@
         sigmoid( 12-14 )        # 0.11920292202211755
         ```
 
-- Exercise
+- Exercise 2.10
+    - A: 
+        1. E = 0.5.  just choosing action arbitrary.
+        2. E = 0.55 ,  explore the optimal action for each case ,  then greedily choose them in consequent steps. 
+
+- Exercise 2.11
+    - A: 
+
 
 
 

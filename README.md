@@ -7,7 +7,7 @@ http://incompleteideas.net/book/solutions-2nd.html
 
 Recommend :
 
-- covering Chapter 1 for a brief overview.
+- Covering Chapter 1 for a brief overview.
 - Chapter 2 through Section 2.4, Chapter 3, and then selecting sections from the remaining chapters according to time and interests.
 - Chapter 6 is the most important for the subject and for the rest of the book.
 - artificial intelligence or planning :  Chapter 8
@@ -37,25 +37,31 @@ The simplest RL forms: the approximate value functions to be represented as *arr
         - but are more complex to analyze.
 3. combining those 3 methods to solve MDP
 
-## Chaper 2. Multi-armed Bandits
+## Chapter 2. Multi-armed Bandits
 
 [Chapter 2](book/Part%20I%20Tabular%20Solution%20Methods/02.%20Multi-armed%20Bandits.pdf)
 
-choose of e 
+- k-armed Bandit Problem
+- balancing exploration and exploitation
+    1. ε-greedy methods
+        - choose randomly a small fraction of the time
+        - small ε improved more slowly, but eventually would perform better 
+        - estimate action values
+            - averaging methods (for stationary problem) ,  special const step-size method, with α = 1/n
+            - const step-size method (for nonstationary problem)
+    2. UCB
+        - not pratical in general RL problem.
+    3. Gradient Bandit Algorithms
+        - estimate not action values, but action preferences
+        - learning a numerical *preference* for each action  H<sub>t</sub>(a).
+        - [soft-max](https://github.com/mebusy/notes/blob/master/dev_notes/softmax.md) distribution
+- optimistic initial values
+    - encourage exploration, but is effective only on stationary problems
+    - may use *Unbiased Constant-Step-Size Trick* to utilize initial value in nonstationary problem.
 
-nonstationary problem
 
-step size 
-1.
-2.
-3.
+## Chapter
 
-
-### 2.6 Optimistic Initial Values
-
-
-
-[soft-max](https://github.com/mebusy/notes/blob/master/dev_notes/softmax.md)
 
 
 
