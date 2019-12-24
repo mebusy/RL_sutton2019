@@ -13,8 +13,37 @@ Recommend :
 - artificial intelligence or planning :  Chapter 8
 - machine learning or neural networks :  Chapter 9, 10
 
-
 marked as `*` :  more difficult and not essential to the rest of the book.  These can be omitted on 1st reading. 
+
+## Chapter 1. Introduction 
+
+[Introduction](book/Introduction.pdf)
+
+- key features
+    - trial-and-error search 
+    - delayed reward
+    - considers the *whole* problem of a goal-directed agent interacting with an uncertain environment.
+- trade-off between exploration and exploitation
+- four main subelements
+    1. policy
+    2. reward signal
+        - immediate desirability of state
+        - sole objective of RL is to maximize the total reward
+    3. value function
+        - value indicate the long-term desirability of states
+    4. (optionally) model of the environment.
+        - model-based methods: use models and *planning*
+        - model-free methods: trial-and-error
+- play Tic-Tac-Toe against an imperfect player
+    - minimax is not correct here
+    - dynamic programming requires a complete model, need playing many games to build from experience (this is not that different from some of the reinforcement learning methods).
+- reinforcement learning can also be applied 
+    - when part of the state is hidden,
+    - or to continuous-time problems as well, 
+    - model is not required, but models can easily be used,
+    - at both high and low levels in a system.
+- The use of value functions distinguishes reinforcement learning methods from evolutionary methods.
+
 
 
 # Part I: Tabular Solution Methods
@@ -44,7 +73,7 @@ The simplest RL forms: the approximate value functions to be represented as *arr
 - k-armed Bandit Problem
 - balancing exploration and exploitation
     1. ε-greedy methods
-        - choose randomly a small fraction of the time
+        - choose actions randomly a small fraction of the time
         - small ε improved more slowly, but eventually would perform better 
         - estimate action values
             - averaging methods (for stationary problem) ,  special const step-size method, with α = 1/n
