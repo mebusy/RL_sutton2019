@@ -29,7 +29,8 @@
 
 - Exercise 1.5 Other Improvements
     - Q: Can you think of other ways to improve the reinforcement learning player? Can you think of any better way to solve the tic-tac-toe problem as posed ?
-    - A: 
+    - A: adding prior knowledge: center cell is the optimal action for the 1st initial move, in case the learning player move first.
+        - 
 
 
 
