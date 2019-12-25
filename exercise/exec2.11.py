@@ -59,10 +59,7 @@ class epsilonGreedy( Learning ):
 
             if True or i >= STEP_TO_CALC_AVERAGE:
                 averageR  += ( r - averageR) / ( i+ 1 )
-
-            if i%1000 == 0 :
-                print "step:", i
-             
+ 
         return averageR
           
 class UCB( epsilonGreedy ):
