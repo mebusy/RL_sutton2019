@@ -5,7 +5,7 @@ import time
 
 
 means = [ 0.2, -0.8, 1.6, 0.4, 1.4,  -1.4 , -0.2, -0.9, 0.8 , -0.5  ]
-sigma = 0.6
+sigma = 1
 epsilon = 0.1
 
 nStep = 10000
@@ -26,6 +26,9 @@ def bandit( A) :
 # for sample average
 averageRewards0 = np.zeros( ( nExperiment, nStep) )
 
+def Argmax( b  ):
+    return np.random.choice(np.where(b == b.max())[0])
+
 def sample_average_experiment( idx  ):
     global means_equal
     nActions = len(means )
@@ -41,7 +44,7 @@ def sample_average_experiment( idx  ):
         if np.random.random() <= epsilon :
             A = np.random.choice( nActions  )
         else:
-            A = np.argmax( Q )
+            A = Argmax( Q )
 
         R = bandit(A)
         N[A] = N[A] + 1
@@ -75,7 +78,7 @@ def constant_step_experiment( idx  ):
         if np.random.random() <= epsilon :
             A = np.random.choice( nActions  )
         else:
-            A = np.argmax( Q )
+            A = Argmax( Q )
 
         R = bandit(A)
         N[A] = N[A] + 1

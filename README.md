@@ -74,6 +74,7 @@ The simplest RL forms: the approximate value functions to be represented as *arr
 - balancing exploration and exploitation
     1. ε-greedy methods
         - choose actions randomly a small fraction of the time
+            - tie breaking on greedy *argmax*
         - small ε improved more slowly, but eventually would perform better 
         - estimate action values
             - averaging methods (for stationary problem) ,  special const step-size method, with α = 1/n
