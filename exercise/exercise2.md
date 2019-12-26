@@ -33,7 +33,7 @@
 
 - Exercise 2.5
     - Q: (programming) Design and conduct an experiment to demonstrate the difficulties that sample-average methods have for nonstationary problems.
-    - A: see [source code](exec2.5.py)
+    - A: see [source code 2.5](exec2.5.py)
         - ![](exec2.5.png)
 
 - Exercise 2.6  Mysterious Spikes 
@@ -74,7 +74,7 @@
 
 - Exercise 2.11
     - A: 
-        - [source code](exec2.11.py)
+        - [source code 2.11](exec2.11.py)
         - ![](exec2_11.png)
 
 
