@@ -74,6 +74,8 @@
 
 - Exercise 2.11
     - A: 
+        - [source code](exec2.11.py)
+        - ![](exec2_11.png)
 
 
 
