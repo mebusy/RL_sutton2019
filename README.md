@@ -80,6 +80,7 @@ The simplest RL forms: the approximate value functions to be represented as *arr
             - averaging methods (for stationary problem) ,  special const step-size method, with α = 1/n
             - const step-size method (for nonstationary problem)
     2. UCB
+        - different on **exploration** 
         - not pratical in general RL problem.
     3. Gradient Bandit Algorithms
         - estimate not action values, but action preferences

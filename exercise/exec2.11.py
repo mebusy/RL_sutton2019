@@ -1,6 +1,6 @@
 import numpy as np
 
-SCALE = 10
+SCALE = 1
 STEP = 200000  / SCALE
 STEP_TO_CALC_AVERAGE = 100000 / SCALE
 
@@ -29,9 +29,15 @@ class Learning(object) :
         # tie breaking
         return np.random.choice(np.where(b == b.max())[0])
 
+    def Softmax( self, f ):
+        # instead: first shift the values of f so that the highest number is 0:
+        f -= np.max(f) # f becomes [-666, -333, 0]
+        return np.exp(f) / np.sum(np.exp(f))  # safe to do, gives the correct answer
+
 class epsilonGreedy( Learning ):
 
     def chooseAction(self, step ):
+        # it should NOT update anything when choose action
         if np.random.random() <= self.epsilon :
             A = np.random.choice( NACTIONS  )
         else:
@@ -76,10 +82,33 @@ class UCB( epsilonGreedy ):
 
     def chooseAction(self, step ):
         if np.random.random() <= self.epsilon :
-            A = np.random.choice( NACTIONS  )
-        else:
             A = self.Argmax( self.Q +  np.nan_to_num (self.c * np.sqrt( np.log(step) / self.N  ) ))
+        else:
+            A = self.Argmax( self.Q  )
         return A 
+        
+class Gradient( epsilonGreedy ):
+    def init(self , a ):
+        self.stepsize = a 
+        self.Q = np.zeros( NACTIONS )
+        self.H = np.zeros( NACTIONS )
+
+    def chooseAction(self, step ):
+        self.distribution = self.Softmax( self.H )
+        A = np.random.choice( NACTIONS , p = self.distribution  )
+        return A
+
+    def performAction(self, step, A ):
+        R = np.random.normal( env.means[step][A] , 1.0 )
+        # before update average reward Q,  update H af first
+        for a in xrange( NACTIONS ):
+            if a == A:
+                self.H[a] += self.stepsize * ( R - self.Q[a] ) * ( 1-self.distribution[a] )
+            else:
+                self.H[a] += self.stepsize * ( R - self.Q[a] ) * (  -self.distribution[a] )
+
+        self.Q[A] = self.Q[A] + self.stepsize*( R - self.Q[A] )
+        return R
 
 
 if __name__ == "__main__":
@@ -89,18 +118,31 @@ if __name__ == "__main__":
     # for i in xrange(10):
     #     env.step( True )
 
-    # eLearn = epsilonGreedy( )
-    # x = np.linspace( 0.01 , 0.5 , 50 )
-    # y = [ eLearn.doEpsoid( env, i , 0.1 )  for i in x ]
-    # plt.plot(x,y, color="red" )
+    fig, ax = plt.subplots()
 
+    eLearn = epsilonGreedy( )
+    x = np.linspace( 0.01 , 0.5 , 50 )
+    y = [ eLearn.doEpsoid( env, i , 0.1 )  for i in x ]
+    plt.plot( x,y, color="red" )
+    plt.text( 0.1, np.max( y )   , 'e-greedy', color='red', fontsize=14 )
+    
     ucb = UCB( )
-    x = np.linspace( 0.1 , 10 , 50 )
+    x = np.linspace( 0.1 , 5 , 50 )
     y = [ ucb.doEpsoid( env, 0.1 , 0.1, i )  for i in x ]
-    plt.plot(x,y, color="blue" )
+    plt.plot( x,y, color="blue" )
+    plt.text( 1, np.max( y )   , 'UCB', color='blue', fontsize=14 )
 
+    gradient = Gradient( )
+    x = np.linspace( 0.01 , 0.5 , 50 )
+    y = [ gradient.doEpsoid( env,  i )  for i in x ]
+    plt.plot( x,y, color="green" )
+    plt.text( 0.1, np.min(y)   , 'Gradient', color='green', fontsize=14 )
 
+    plt.xscale('log') 
 
+    plt.text(0.2, -0.10, 'e', color='red', transform= ax.transAxes , fontsize=16 )
+    plt.text(0.5, -0.10, 'a', color='green', transform=ax.transAxes, fontsize=16)
+    plt.text(0.8, -0.10, 'c', color='blue', transform=ax.transAxes, fontsize=16)
 
     plt.show() 
     print "done"
