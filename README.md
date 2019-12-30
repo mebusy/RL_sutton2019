@@ -91,7 +91,13 @@ The simplest RL forms: the approximate value functions to be represented as *arr
     - may use *Unbiased Constant-Step-Size Trick* to utilize initial value in nonstationary problem.
 
 
-## Chapter
+## Chapter 3. Finite Markov Decision Processes
+
+- the need to tradeoff immediate and delayed reward
+- estimate q<sub>*</sub>(s,a) ,  or v<sub>*</sub>(s) given optimal action selections
+- different R<sub>t</sub> notation
+    - S₀,A₀, R₁,S₁,A₁, R₂,S₂,...
+
 
 
 

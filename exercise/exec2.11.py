@@ -90,7 +90,7 @@ class UCB( epsilonGreedy ):
 class Gradient( epsilonGreedy ):
     def init(self , a ):
         self.stepsize = a 
-        self.Q = np.zeros( NACTIONS )
+        self.Q_bar = np.zeros( NACTIONS )
         self.H = np.zeros( NACTIONS )
 
     def chooseAction(self, step ):
@@ -100,14 +100,14 @@ class Gradient( epsilonGreedy ):
 
     def performAction(self, step, A ):
         R = np.random.normal( env.means[step][A] , 1.0 )
-        # before update average reward Q,  update H af first
+        # before update average reward Q_bar,  update H af first
         for a in xrange( NACTIONS ):
             if a == A:
-                self.H[a] += self.stepsize * ( R - self.Q[a] ) * ( 1-self.distribution[a] )
+                self.H[a] += self.stepsize * ( R - self.Q_bar[a] ) * ( 1-self.distribution[a] )
             else:
-                self.H[a] += self.stepsize * ( R - self.Q[a] ) * (  -self.distribution[a] )
+                self.H[a] += self.stepsize * ( R - self.Q_bar[a] ) * (  -self.distribution[a] )
 
-        self.Q[A] = self.Q[A] + self.stepsize*( R - self.Q[A] )
+        self.Q_bar[A] = self.Q_bar[A] + self.stepsize*( R - self.Q_bar[A] )
         return R
 
 
