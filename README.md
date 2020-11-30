@@ -93,10 +93,8 @@ The simplest RL forms: the approximate value functions to be represented as *arr
 
 ## Chapter 3. Finite Markov Decision Processes
 
-- the need to tradeoff immediate and delayed reward
-- estimate q<sub>*</sub>(s,a) ,  or v<sub>*</sub>(s) given optimal action selections
-- different R<sub>t</sub> notation
-    - S₀,A₀, R₁,S₁,A₁, R₂,S₂,...
+- In many cases the agent–environment interaction does not break naturally into identifiable episodes, but goes on continually without limit.
+    - Solution: discounted rewards
 
 
 
