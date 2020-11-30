@@ -93,15 +93,42 @@ The simplest RL forms: the approximate value functions to be represented as *arr
 
 ## Chapter 3. Finite Markov Decision Processes
 
-- In many cases the agent–environment interaction does not break naturally into identifiable episodes, but goes on continually without limit.
-    - Solution: discounted rewards
+[Chapter 3](book/Part%20I%20Tabular%20Solution%20Methods/03%20Finite%20MDP.pdf)
+
+- 3.1 The Agent–Environment Interface
+    - *Markov property* states that the conditional probability distribution for the system at the next step (and in fact at all future steps) 
+        - depends ONLY on the current state of the system, and not additionally on the state of the system at previous steps.
+- 3.2 Goals and Rewards
+    - It is thus critical that the rewards we set up truly indicate what we want accomplished.
+        - In particular, the reward signal is not the place to impart to the agent prior knowledge about how to achieve what we want it to do.
+        - For example, a chess-playing agent should be rewarded only for actually winning, not for achieving subgoals such as taking its opponent’s pieces or gaining control of the center of the board.
+        - The reward signal is your way of communicating to the robot **what** you want it to achieve, not **how** you want it achieved
+- 3.3 Returns and Episodes
+    - *episode*: the agent–environment interaction breaks naturally into subsequences, which we call episodes.
+    - *episodic tasks*: Tasks with episodes of this kind are called episodic tasks.
+    - *continuing tasks*: In many cases the agent–environment interaction does not break naturally into identifiable episodes, but goes on continually without limit.
+        - the final time step would be T = ∞, and the return could itself easily be infinite.
+        - Solution: discounted rewards
+    - Example: Pole-Balancing
+        - This task could be treated as episodic. The reward in this case could be +1 for every time step on which failure did not occur.
+        - Alternatively, we could treat pole-balancing as a continuing task, using discounting. In this case the reward would be -1 on each failure and zero at all other times.
+- 3.5 Policies and Value Functions
+    - state-value function / action-value function
+    - The *value* of a *state* is the expected sum of all future rewards when starting in that **state** and following a specific policy.
+        - **Note that the value of the terminal state, if any, is always zero.**
+    - The value functions v<sub>π</sub> and q<sub>π</sub> can be estimated from experience.
+        - We call estimation methods of this kind *Monte Carlo methods* because they involve averaging over many random samples of actual returns.
+- 3.6 Optimal Policies and Optimal Value Functions
+    - Explicitly solving the Bellman optimality equation is rarely directly useful. This solution relies on at least three assumptions that are rarely true in practice: 
+        1. know the exact MDP
+        2. have enough computational resources
+        3. the Markov property
+    - We consider a variety of such methods in the following chapters.
 
 
+## Chapter 4. Dynamic Programming
 
-
-
-
-
+[Chapter 4](book/Part%20I%20Tabular%20Solution%20Methods/04%20Dynamic%20Programming.pdf)
 
 
 
