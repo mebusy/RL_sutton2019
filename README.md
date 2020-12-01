@@ -130,5 +130,17 @@ The simplest RL forms: the approximate value functions to be represented as *arr
 
 [Chapter 4](book/Part%20I%20Tabular%20Solution%20Methods/04%20Dynamic%20Programming.pdf)
 
+- Classical DP algorithms are of limited utility in reinforcement learning
+    - both because of their assumption of a perfect model and because of their great computational expense.
+- DP provides an essential foundation for the understanding of the methods presented in the rest of this book.
+    - In fact, all of these methods can be viewed as attempts to achieve much the same effect as DP, only with less computation and without assuming a perfect model of the environment.
+- We usually assume that the environment is a finite MDP, although DP ideas can be applied to problems with continuous state and action spaces, exact solutions are possible only in special cases. 
+    - a common way is to quantize the state and action spaces and then apply finite-state DP methods
+- 4.3 Policy Iteration
+    - Policy Evaluation + Policy Improvement
+    - *policy evaluation*: compute the state-value function v<sub>π</sub> for an arbitrary policy π. (until converge)
+    - using the value function for a policy to help find better policies.
+- 4.4 Value Iteration
+    - 
 
 
