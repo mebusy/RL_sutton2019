@@ -143,4 +143,21 @@ The simplest RL forms: the approximate value functions to be represented as *arr
         - using the value function for a policy to help find better policies.
     - 4.4 Value Iteration
 
+## Chapter 5 Monte Carlo Methods
+
+[Chapter 5](book/Part%20I%20Tabular%20Solution%20Methods/05%20Monte%20Carlo%20Methods.pdf)
+
+- **estimating** value functions, **not assume** complete knowledge of the environment, based on averaging **complete** returns (as opposed to methods that learn from partial returns).
+- Monte Carlo methods require only *experience*
+    - Learning from *actual* experience requires no prior knowledge of the environment’s dynamics.
+    - Learning from *simulated* experience, a model is required, the model need only generate sample transitions, not the complete probability distributions.
+        - e.g. Blackjack. 
+- 5.1 Prediction
+    - *first-visit* MC method  /  **every-visit** MC method
+- Advantage than DP
+    1. ability to work with sample episodes alone
+    2.
+    3. the estimates for each state are independent
+        - can evaluate a single state without forming estimates for any other states. 
+
 
