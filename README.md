@@ -154,10 +154,37 @@ The simplest RL forms: the approximate value functions to be represented as *arr
         - e.g. Blackjack. 
 - 5.1 Prediction
     - *first-visit* MC method  /  **every-visit** MC method
+- 5.2 Monte Carlo Estimation of Action Values
+    - If a model is not available, state-value alone is not sufficient to determine a policy.
+    - The only complication is that many state–action pairs may never be visited. For policy evaluation to work for action values, we must assure continual exploration.
+- 5.3 Monte Carlo Control
+    - Monte Carlo ES(Exploring Starts) , After each episode , do evaluation and improvement
+- 5.4 Monte Carlo Control without Exploring Starts
+    - On-policy first-visit MC control (for ε-soft policies)
+- 5.5 Off-policy Prediction via Importance Sampling
 - Advantage than DP
-    1. ability to work with sample episodes alone
-    2.
+    1. with no model of the environment’s dynamic
+    2. can be used with simulation or *sample models*
     3. the estimates for each state are independent
         - can evaluate a single state without forming estimates for any other states. 
+
+## Chapter 6 Temporal-Di↵erence Learning
+
+[Chapter 6](book/Part%20I%20Tabular%20Solution%20Methods/06%20TD-Learning.pdf)
+
+- TD learning is a combination of Monte Carlo ideas and dynamic programming (DP) ideas
+    - can learn directly from raw experience without a model
+    - update estimates based on other learned estimates
+- 6.1 TD Prediction
+    - *bootstrapping* method
+        - update base on existing estimate
+    - TD(0), or *one-step* TD, update state-value only until the next time step
+- 6.2 Advantages of TD Prediction Methods
+    - do not require a model of the environment, of its R and P  ( over DP)
+    - are naturally implemented in an online, fully incremental fashion ( over MC )
+        - some applications have very long episodes, other applications are continuing tasks and have no episodes at all
+- 6.4 Sarsa: On-policy TD Control
+- 6.5 Q-learning: Off-policy TD Control
+
 
 
