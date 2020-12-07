@@ -160,7 +160,7 @@ The simplest RL forms: the approximate value functions to be represented as *arr
 - 5.3 Monte Carlo Control
     - Monte Carlo ES(Exploring Starts) , After each episode , do evaluation and improvement
 - 5.4 Monte Carlo Control without Exploring Starts
-    - On-policy first-visit MC control (for ε-soft policies)
+    - **On-policy first-visit MC control** (for ε-soft policies)
 - 5.5 Off-policy Prediction via Importance Sampling
 - Advantage than DP
     1. with no model of the environment’s dynamic
@@ -168,7 +168,31 @@ The simplest RL forms: the approximate value functions to be represented as *arr
     3. the estimates for each state are independent
         - can evaluate a single state without forming estimates for any other states. 
 
-## Chapter 6 Temporal-Di↵erence Learning
+<details>
+<summary>
+<b>On-policy VS Off-policy</b>
+</summary>
+
+- off-policy: learning is from data **off** the target policy
+- [强化学习中on-policy 与off-policy有什么区别](https://www.zhihu.com/question/57159315)
+    - 皇帝希望能多了解民间百姓的生活
+        - on-policy 微服出巡
+        - off-policy 派多个官员去了解情况
+- The most important difference is how Q is updated after each action.
+    - ![](imgs/RL-on-off-policy.jpg)
+    - SARSA uses the Q' following a ε-greedy policy exactly as A' is drawn from it.
+    - Q-learning uses the maximum Q' over all possible actions for the next step. This makes it look like following a greedy policy.
+
+· | SARSA | Q-learning
+--- | --- | --- 
+choosing A' | π | π
+updating Q | π | μ
+
+where π is ε-greedy policy , and μ is a greedy policy
+
+</details>
+
+## Chapter 6 Temporal-Difference Learning
 
 [Chapter 6](book/Part%20I%20Tabular%20Solution%20Methods/06%20TD-Learning.pdf)
 
@@ -185,6 +209,26 @@ The simplest RL forms: the approximate value functions to be represented as *arr
         - some applications have very long episodes, other applications are continuing tasks and have no episodes at all
 - 6.4 Sarsa: On-policy TD Control
 - 6.5 Q-learning: Off-policy TD Control
+- 6.6 Expected Sarsa
+    - when updating Q value, use expected value instead of max ( compare with Q-learning )
+- 6.7 Maximization Bias and Double Learning
+
+<details>
+<summary>
+<b>When are Monte Carlo methods preferred over temporal difference ones?</b>
+</summary>
+
+- main difference
+    - TD-learning uses bootstrapping to approximate the action-value function
+    - Monte Carlo uses an average to accomplish this
+- The main problem with TD learning and DP is that their step updates are biased on the initial conditions of the learning parameters. 
+    - However, the bias can cause significant problems, especially for off-policy methods (e.g. Q Learning) and when using function approximators. That combination is so likely to fail to converge that it is called the **deadly triad** in Sutton & Barto.
+- Monte Carlo control methods do not suffer from this bias, as each update is made using a true sample of what Q(s,a) should be. However, Monte Carlo methods can suffer from high variance, which means more samples are required to achieve the same degree of learning compared to TD.
+- If you are using a value-based method (as opposed to a policy-based one), then TD learning is generally used more in practice, or a TD/MC combination method such as TD(λ) can be even better. 
+    - Monte Carlo learning is conceptually simple, robust and easy to implement. I would generally not use it for a learning controller engine (unless in a hurry to implement something for a simple environment), but I would seriously consider it for policy evaluation in order to compare multiple agents for instance.
+
+
+</details>
 
 
 
