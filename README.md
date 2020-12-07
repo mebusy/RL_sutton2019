@@ -231,4 +231,21 @@ where π is ε-greedy policy , and μ is a greedy policy
 </details>
 
 
+## Chapter 7 n-step Bootstrapping
+
+[Chapter 7](book/Part%20I%20Tabular%20Solution%20Methods/07-n-step-Bootstrapping.pdf)
+
+## Chapter 8 Planning and Learning with Tabular Methods
+
+[Chapter 8](book/Part%20I%20Tabular%20Solution%20Methods/08-planning-learning-with-Tabular-Methods.pdf)
+
+- 8.1 Models and Planning
+    - model
+        - distribution model ( e.g. models used in DP)
+        - sample model ( e.g. model used in the blackjack exampl )
+    - model -> *planning* -> policy
+- 8.2 Dyna: Integrated Planning, Acting, and Learning
+
+
+
 
