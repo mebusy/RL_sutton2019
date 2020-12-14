@@ -126,6 +126,24 @@ The simplest RL forms: the approximate value functions to be represented as *arr
     - We consider a variety of such methods in the following chapters.
 
 
+<details>
+<summary>
+Why discount?
+</summary>
+
+Most Markov reward and decision processes are discounted. Why?
+
+- Mathematically convenient to discount rewards
+- Avoids infinit returns in cyclic Markov processes
+- Uncertainty about the future may not be fully represented
+    - we might NOT have a prefect model. 
+- If the reward is financial,  immediate rewards may earn more interest than delayed rewards
+- Animal/human behaviour shows preference for immediate reward
+- It is sometimes possible to use *undiscounted* Markov reward processes (i.e. γ=1), e.g. if all sequences terminate
+
+</details>
+
+
 ## Chapter 4. Dynamic Programming
 
 [Chapter 4](book/Part%20I%20Tabular%20Solution%20Methods/04%20Dynamic%20Programming.pdf)
