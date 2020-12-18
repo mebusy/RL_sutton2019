@@ -188,7 +188,7 @@ Most Markov reward and decision processes are discounted. Why?
 
 <details>
 <summary>
-<b>On-policy VS Off-policy</b>
+<b>SARSA vs Q-Learning, On-policy VS Off-policy</b>
 </summary>
 
 - off-policy: learning is from data **off** the target policy
