@@ -160,6 +160,15 @@ Most Markov reward and decision processes are discounted. Why?
         - *policy evaluation*: compute the state-value function v<sub>π</sub> for an arbitrary policy π. (until converge)
         - using the value function for a policy to help find better policies.
     - 4.4 Value Iteration
+- Ideas
+    - Does policy evaluation need to converge to v<sub>π</sub>?  No.
+    - Or shoud we introduce a stopping condition 
+        - e.g. ε-convergence of value function
+    - Or simply stop after *k* iterations of iterative policy evaluation ?
+        - for example, in the small gridworld, k=3 was sufficient to achieve optimal policy.
+    - Why not update policy every iteration?  i.e. stop after k=1
+        - **This is equivalent to value iteration**
+
 
 ## Chapter 5 Monte Carlo Methods
 
