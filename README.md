@@ -160,6 +160,9 @@ Most Markov reward and decision processes are discounted. Why?
         - *policy evaluation*: compute the state-value function v<sub>π</sub> for an arbitrary policy π. (until converge)
         - using the value function for a policy to help find better policies.
     - 4.4 Value Iteration
+
+---
+
 - Ideas
     - Does policy evaluation need to converge to v<sub>π</sub>?  No.
     - Or shoud we introduce a stopping condition 
@@ -168,6 +171,16 @@ Most Markov reward and decision processes are discounted. Why?
         - for example, in the small gridworld, k=3 was sufficient to achieve optimal policy.
     - Why not update policy every iteration?  i.e. stop after k=1
         - **This is equivalent to value iteration**
+- Policy Evaluation/Iteration , Value Iteration could also apply to action-value function q(s,a)
+    - But the complexity will increase to O(m²n²) while value function is O(mn²),  for m actions, n stats
+- 3 simple ideas for asynchronous dynamic programming
+    1. in-place dynamic programming
+        - synchronous value iteration stores 2 copies of value function ,  v<sub>new</sub>(s) ← v<sub>old</sub>(s') , v<sub>old</sub> ← v<sub>new</sub>
+        - in-place value iteration only stores one copy value function  v(s)← v(s'), the ordering of status updating really matters, and that motivates **Prioritised sweeping**
+    2. Prioritised sweeping
+        - use magnitude of Bellman error to guide state selection, e.g. the states which changes most
+    3. Real-time dynamic programming
+        - Idea: only states that are relevant to agent.
 
 
 ## Chapter 5 Monte Carlo Methods
@@ -194,6 +207,7 @@ Most Markov reward and decision processes are discounted. Why?
     2. can be used with simulation or *sample models*
     3. the estimates for each state are independent
         - can evaluate a single state without forming estimates for any other states. 
+
 
 <details>
 <summary>
