@@ -33,12 +33,14 @@ class Problem(object):
     def GetPolicy(self, state ):
         return self.PI[ state ]
 
+    # return (  ( prob, reward, state'   ),  )
     @functools.lru_cache(maxsize=None)
     def Successor(self, state, action ):
         nCar1, nCar2 = state
         r0 = -2 * abs(action)
-        nCar1 -= action
-        nCar2 += action
+        # moving cars
+        nCar1 = min( nCar1 - action, MAX_CAR_AVAILABLE )
+        nCar2 = min( nCar2 + action, MAX_CAR_AVAILABLE )
 
         sucs = []
         p_sum = 0
@@ -51,7 +53,6 @@ class Problem(object):
             for suc in sucs:
                 suc[0] /= p_sum
 
-        # (  ( prob, reward, state'   ),  )
         # print(suc)
         return sucs
 
@@ -79,12 +80,11 @@ class Problem(object):
 
         delta2 = nCar2_prime - nCar2
         p2, r2 = self.probRewardLoc2Delta( delta2, nCar2 )
-        return p1*p2, r1+r1
+        return p1*p2, r1+r2
 
 
-    def show_cli(self):
+    def Show_cli(self):
         out = []
-
         for s1 in range( MAX_CAR_AVAILABLE , -1, -1):
             for s2 in range( MAX_CAR_AVAILABLE + 1):
                 # print (s1, s2)
@@ -94,6 +94,20 @@ class Problem(object):
 
         out = ''.join(out)
         print(out)
+
+
+        out = []
+        for s1 in range( MAX_CAR_AVAILABLE , -1, -1):
+            for s2 in range( MAX_CAR_AVAILABLE + 1):
+                # print (s1, s2)
+                val = self.V[(s1, s2)]
+                out.append(  "%4d" % int(val)  )
+            out.append('\n')
+
+        out = ''.join(out)
+        print(out)
+
+
 
         
 
