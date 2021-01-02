@@ -1,6 +1,4 @@
 #!/usr/local/bin/python3
-from problem import Problem
-from problemGridworld import Problem
 import numpy as np
 
 
@@ -27,17 +25,15 @@ def PolicyIteration( problem ):
 
                 # V(s) <- ∑ p( s',r | s, π(s )[ r+ gamma·V(s') ] 
                 actions = problem.GetPolicy( s )  # here follows π
-                p_action = 1.0/len(actions)
-                v_tmp = 0
-                for action in actions:
+                q_values = np.zeros( len(actions) )
+                for i,action in enumerate(actions):
                     q_val = 0
                     for p, r, s_prime in problem.Successor( s, action ):
                         q_val += p * ( r + Gamma * V_prime[ s_prime ] )
-                    v_tmp += p_action * q_val
-
+                    q_values[i] = q_val
                 # get new value
-                # only keep .6 for float number
-                V[s] = round( v_tmp, 7 )
+                # only keep .7 for float number
+                V[s] = round( q_values.mean(), 7 )
 
                 # Δ ← max( Δ , |v-V(s)| )
                 delta = max( delta, abs( v - V[s] ) )
@@ -47,6 +43,7 @@ def PolicyIteration( problem ):
             print( "debug: evaluation {}th sweep, delta: {}".format( nSweepCount, delta ))
             if delta < theta:
                 break
+            # if True: return #DEBUG
 
         print( "debug: evaluation converge afte {} sweep".format( nSweepCount ))
 
@@ -78,11 +75,17 @@ def PolicyIteration( problem ):
         # If policy-stable, then stop and return
         if bPolicyStable:
             return V,PI
-        if True:
-            return
+        # if True: return  #DEBUG test Small GridWorld
+            
 
 
 if __name__ == "__main__":
+    from problemCarRental import Problem
+    # from problemGridworld import Problem
+
     problem = Problem()
     PolicyIteration( problem )
     problem.Show_cli()
+
+
+
