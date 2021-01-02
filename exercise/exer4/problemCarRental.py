@@ -23,6 +23,9 @@ class Problem(object):
     def AllStates(self):
         return itertools.product( range( self.V.shape[0]), range( self.V.shape[1]  ) )
 
+    def IsTerminal(self,state):
+        return False
+
     def AvailableActions(self, state ):
         nCar1, nCar2 = state
         # in this problem, you can move upto 5 cars between two locations.
@@ -60,14 +63,14 @@ class Problem(object):
     @functools.lru_cache(maxsize=None)
     def probRewardLoc1Delta(self, delta, nCar ):
         nIter = min( nCar, 11 )
-        p = [ stats.poisson.pmf( i,3 )* stats.poisson.pmf( i-delta,3 )  for i in range(nIter) ]         
+        p = [ stats.poisson.pmf( i,3 )* stats.poisson.pmf( i+delta,3 )  for i in range(nIter) ]         
         return sum(p) , sum( [ p[i]*i*10 for i in range(nIter) ] )
 
     # probability in loc2 , if nCar delta = ?
     @functools.lru_cache(maxsize=None)
     def probRewardLoc2Delta(self, delta, nCar ):
         nIter = min( nCar, 11 )
-        p = [ stats.poisson.pmf( i,4 )* stats.poisson.pmf( i-delta,2 )  for i in range(nIter) ]         
+        p = [ stats.poisson.pmf( i,4 )* stats.poisson.pmf( i+delta,2 )  for i in range(nIter) ]         
         return sum(p) , sum( [ p[i]*i*10 for i in range(nIter) ] )
 
 
