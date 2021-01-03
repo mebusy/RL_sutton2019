@@ -186,8 +186,8 @@ if __name__ == "__main__":
     for i in range(nSample):
         rent1 = min( requests1[i], nCar1-action )
         rent2 = min( requests2[i], nCar2+action )
-        if requests1[i] <= 20 and requests1[i] == returns1[i] and \
-            requests2[i]<=20 and  requests2[i] == returns2[i] :
+        if requests1[i] <= 20 and requests1[i] == returns1[i]  and returns1[i] <= rent1 and \
+            requests2[i]<= 20 and  requests2[i] == returns2[i] and returns2[i] <= rent2 :
             cnt += 1
             r += (rent1+rent2) * 10
     print( cnt / nSample, -2*abs(action) + r / cnt )
@@ -203,19 +203,24 @@ if __name__ == "__main__":
     print(len(sucs))
 
     cnt = 0
-    for i in range(nSample):
-        if requests1[i] <= 20 and 0 == returns1[i] and \
-            requests2[i]<=20 and  0 == returns2[i] :
-            cnt += 1
-    print( cnt / nSample, 0 )
+    r = 0
+    nCar1, nCar2, action = 1,1,-1 # 2,0,
 
-    nCar1, nCar2, action = 0,0,0
+    for i in range(nSample):
+        rent1 = min( requests1[i], nCar1-action )
+        rent2 = min( requests2[i], nCar2+action )
+        if requests1[i] <= 20 and requests1[i] == returns1[i] and returns1[i] <= rent1 and \
+            requests2[i]<= 20 and requests2[i] == returns2[i] and returns2[i] <= rent2 :
+            cnt += 1
+            r += (rent1+rent2) * 10
+    print( cnt / nSample, -2*abs(action) + r / cnt )
+
     problem = Problem()
     problem.Initialization()
-    sucs = problem.Successor( (nCar1, nCar2), 0 )
+    sucs = problem.Successor( (nCar1, nCar2), action )
     for p,r,s_prime in sucs:
         # print(p,r,s_prime)
-        if s_prime == (0,0):
+        if s_prime == (2,0):
             print( p,r )
         pass
     print(len(sucs))
