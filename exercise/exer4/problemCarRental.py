@@ -30,8 +30,8 @@ class Problem(object):
     def AvailableActions(self, state ):
         nCar1, nCar2 = state
         # in this problem, you can move upto 5 cars between two locations.
-        upper = min( nCar1 , MAX_CAR_MOVED , MAX_CAR_AVAILABLE - nCar2  )
-        lower = -min( nCar2 , MAX_CAR_MOVED , MAX_CAR_AVAILABLE - nCar1  )
+        upper = min( nCar1 , MAX_CAR_MOVED  )
+        lower = -min( nCar2 , MAX_CAR_MOVED  )
         return list( range( lower, upper + 1 ) )
 
     def GetPolicy(self, state ):
@@ -46,8 +46,8 @@ class Problem(object):
         nCar1, nCar2 = state
         r0 = -2 * abs(action)
         # moving cars
-        nCar1 = nCar1 - action
-        nCar2 = nCar2 + action
+        nCar1 = min(nCar1 - action, MAX_CAR_AVAILABLE)
+        nCar2 = min(nCar2 + action, MAX_CAR_AVAILABLE)
 
         assert nCar1 >=0 and nCar1 <= MAX_CAR_AVAILABLE
         assert nCar2 >=0 and nCar2 <= MAX_CAR_AVAILABLE
@@ -178,25 +178,30 @@ if __name__ == "__main__":
     requests2 = np.random.poisson(4, nSample)
     returns2 = np.random.poisson( 2, nSample)
 
-    for nCar1,nCar2,action in [ [16,16,2], [ 1,1,-1 ] ]:
+    for _nCar1,_nCar2,action,nCar1_prime, nCar2_prime in \
+        [ [16,16,2, 14,18], [ 1,1,-1,2,0 ], [ 20,20,4 , 18,19 ] ]:
         cnt = 0
         r = 0
-        print( "state-action:", nCar1,nCar2,action )
-
+        print( "state-action:", _nCar1,_nCar2,action )
+        nCar1 = min( _nCar1 - action, MAX_CAR_AVAILABLE )
+        nCar2 = min( _nCar2 + action, MAX_CAR_AVAILABLE )
+ 
         for i in range(nSample):
-            rent1 = min( requests1[i], nCar1-action )
-            rent2 = min( requests2[i], nCar2+action )
-            if requests1[i] == returns1[i] and returns1[i] <= rent1 and \
-               requests2[i] == returns2[i] and returns2[i] <= rent2 :
+            rent1 = min( requests1[i], nCar1 )
+            rent2 = min( requests2[i], nCar2 )
+
+            _car1 = min(nCar1-rent1+returns1[i], MAX_CAR_AVAILABLE)
+            _car2 = min(nCar2-rent2+returns2[i], MAX_CAR_AVAILABLE)
+            if _car1 == nCar1_prime and _car2 == nCar2_prime:
                 cnt += 1
                 r += (rent1+rent2) * 10
         print( "sampled  :", cnt / nSample, -2*abs(action) + r / cnt )
 
         problem = Problem()
         problem.Initialization()
-        sucs = problem.Successor( (nCar1, nCar2), action )
+        sucs = problem.Successor( (_nCar1, _nCar2), action )
         for p,r,s_prime in sucs:
-            if s_prime == ( nCar1-action  , nCar1+action ):
+            if s_prime == ( nCar1_prime  , nCar2_prime ):
                 print( "algorihtm:", p,r )
 
         
