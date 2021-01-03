@@ -177,54 +177,27 @@ if __name__ == "__main__":
     returns1 = np.random.poisson( 3, nSample)
     requests2 = np.random.poisson(4, nSample)
     returns2 = np.random.poisson( 2, nSample)
-    
-    # 借出的车，比归还的车多一辆
-    cnt = 0
-    r = 0
-    nCar1, nCar2, action = 16,16,2  # 14,18
 
-    for i in range(nSample):
-        rent1 = min( requests1[i], nCar1-action )
-        rent2 = min( requests2[i], nCar2+action )
-        if requests1[i] <= 20 and requests1[i] == returns1[i]  and returns1[i] <= rent1 and \
-            requests2[i]<= 20 and  requests2[i] == returns2[i] and returns2[i] <= rent2 :
-            cnt += 1
-            r += (rent1+rent2) * 10
-    print( cnt / nSample, -2*abs(action) + r / cnt )
+    for nCar1,nCar2,action in [ [16,16,2], [ 1,1,-1 ] ]:
+        cnt = 0
+        r = 0
+        print( "state-action:", nCar1,nCar2,action )
 
-    problem = Problem()
-    problem.Initialization()
-    sucs = problem.Successor( (nCar1, nCar2), action )
-    for p,r,s_prime in sucs:
-        # print(p,r,s_prime)
-        if s_prime == (14,18):
-            print( p,r )
-        pass
-    print(len(sucs))
+        for i in range(nSample):
+            rent1 = min( requests1[i], nCar1-action )
+            rent2 = min( requests2[i], nCar2+action )
+            if requests1[i] == returns1[i] and returns1[i] <= rent1 and \
+               requests2[i] == returns2[i] and returns2[i] <= rent2 :
+                cnt += 1
+                r += (rent1+rent2) * 10
+        print( "sampled  :", cnt / nSample, -2*abs(action) + r / cnt )
 
-    cnt = 0
-    r = 0
-    nCar1, nCar2, action = 1,1,-1 # 2,0,
-
-    for i in range(nSample):
-        rent1 = min( requests1[i], nCar1-action )
-        rent2 = min( requests2[i], nCar2+action )
-        if requests1[i] <= 20 and requests1[i] == returns1[i] and returns1[i] <= rent1 and \
-            requests2[i]<= 20 and requests2[i] == returns2[i] and returns2[i] <= rent2 :
-            cnt += 1
-            r += (rent1+rent2) * 10
-    print( cnt / nSample, -2*abs(action) + r / cnt )
-
-    problem = Problem()
-    problem.Initialization()
-    sucs = problem.Successor( (nCar1, nCar2), action )
-    for p,r,s_prime in sucs:
-        # print(p,r,s_prime)
-        if s_prime == (2,0):
-            print( p,r )
-        pass
-    print(len(sucs))
-
+        problem = Problem()
+        problem.Initialization()
+        sucs = problem.Successor( (nCar1, nCar2), action )
+        for p,r,s_prime in sucs:
+            if s_prime == ( nCar1-action  , nCar1+action ):
+                print( "algorihtm:", p,r )
 
         
 
