@@ -87,65 +87,6 @@ class Problem(object):
         return sucs
 
 
-    # return (  ( prob, reward, state'   ),  )
-    @functools.lru_cache(maxsize=None)
-    def Successor2(self, state, action ):
-        nCar1, nCar2 = state
-        r0 = -2 * abs(action)
-        # moving cars
-        nCar1 = min( nCar1 - action, MAX_CAR_AVAILABLE )
-        nCar2 = min( nCar2 + action, MAX_CAR_AVAILABLE )
-
-        sucs = []
-        p_sum = 0
-        for nCar1_prime , nCar2_prime in itertools.product( range( self.V.shape[0]), range( self.V.shape[1]  ) ):
-            p, r = self.reward( (nCar1, nCar2), ( nCar1_prime , nCar2_prime ) )
-            if p < 0.000001 : continue
-            p_sum += p
-            sucs.append( [p, r0+r , ( nCar1_prime , nCar2_prime ) ] )
-
-        if p_sum < 0.5:
-            for p,r,s_prime in sucs:
-                print(p,r,s_prime)
-
-        assert p_sum >= 0.5 , "{},suc total prob:{}".format( state, p_sum )
-
-        # if p_sum != 0:
-        #     for suc in sucs:
-        #         suc[0] /= p_sum
-
-        # print(suc)
-        return sucs
-
-    # probability in loc1 , if nCar delta = ?
-    @functools.lru_cache(maxsize=None)
-    def probRewardLoc1Delta(self, delta, nCar ):
-        nIter = MAX_CAR_AVAILABLE + 1
-        # req arbitarily, but return shoud be restricted according to nCar
-        p_delta = [ stats.poisson.pmf( i,3 )* stats.poisson.pmf( min(i,nCar) +delta,3 ) for i in range(nIter) ]         
-        return sum(p_delta) , sum( [ p* min(i,nCar)*10 for i,p in enumerate(p_delta) ] )
-
-    # probability in loc2 , if nCar delta = ?
-    @functools.lru_cache(maxsize=None)
-    def probRewardLoc2Delta(self, delta, nCar ):
-        nIter = MAX_CAR_AVAILABLE + 1
-        # req arbitarily, but return shoud be restricted according to nCar
-        p_delta = [ stats.poisson.pmf( i,4 )* stats.poisson.pmf( min(i,nCar)+delta,2 ) for i in range(nIter) ]         
-        return sum(p_delta) , sum( [ p* min(i,nCar)*10 for i,p in enumerate(p_delta) ] )
-
-
-    def reward( self, state, state_prime ):
-        nCar1, nCar2 = state
-        nCar1_prime , nCar2_prime = state_prime
-        
-        delta1 = nCar1_prime - nCar1
-        p1, r1 = self.probRewardLoc1Delta( delta1, nCar1 )
-
-        delta2 = nCar2_prime - nCar2
-        p2, r2 = self.probRewardLoc2Delta( delta2, nCar2 )
-        return p1*p2, r1+r2
-
-
     def Show_cli(self):
         out = []
         for s1 in range( MAX_CAR_AVAILABLE , -1, -1):
