@@ -74,7 +74,7 @@ class Problem(object):
                 
                 s = y*4 + x
                 actions = self.PI[s]
-                assert len(actions) <= 2
+                # assert len(actions) <= 2
                 if ACTION_LEFT in actions:
                     arrow += "←"
                 if ACTION_UP in actions:
