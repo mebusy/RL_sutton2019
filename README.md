@@ -269,6 +269,16 @@ where π is ε-greedy policy , and μ is a greedy policy
     - Monte Carlo learning is conceptually simple, robust and easy to implement. I would generally not use it for a learning controller engine (unless in a hurry to implement something for a simple environment), but I would seriously consider it for policy evaluation in order to compare multiple agents for instance.
 
 
+
+TD | MC
+--- | --- 
+learn online after every step | must wait until end of episode before return is known
+can learn from incomplete sequences | can only learn from complete sequences
+works in continuing (non-terminating) environments | only works for episodic (terminating) environments
+has low variance, some bias | has high variance, zero bias
+TD exploits Markov property,Usually more efficient in Markov environments | MC does not exploit Markov property,Usually more effective in non-Markov environments
+
+
 </details>
 
 
