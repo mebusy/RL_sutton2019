@@ -268,7 +268,12 @@ where π is ε-greedy policy , and μ is a greedy policy
 - If you are using a value-based method (as opposed to a policy-based one), then TD learning is generally used more in practice, or a TD/MC combination method such as TD(λ) can be even better. 
     - Monte Carlo learning is conceptually simple, robust and easy to implement. I would generally not use it for a learning controller engine (unless in a hurry to implement something for a simple environment), but I would seriously consider it for policy evaluation in order to compare multiple agents for instance.
 
+</details>
 
+<details>
+<summary>
+TD VS. MC
+</summary>
 
 TD | MC
 --- | --- 
@@ -278,12 +283,11 @@ works in continuing (non-terminating) environments | only works for episodic (te
 has low variance, some bias | has high variance, zero bias
 TD exploits Markov property,Usually more efficient in Markov environments | MC does not exploit Markov property,Usually more effective in non-Markov environments
 
-
 </details>
 
 <details>
 <summary>
-Bootstrapping and Sampling
+Bootstrapping and Sampling, MC,DP,TD
 </summary>
 
  · | Bootstrapping  |  Sampling
@@ -299,6 +303,17 @@ Bootstrapping and Sampling
 ## Chapter 7 n-step Bootstrapping
 
 [Chapter 7](book/Part%20I%20Tabular%20Solution%20Methods/07-n-step-Bootstrapping.pdf)
+
+- TD(λ)
+    - The λ-return Gₜ<sup>λ</sup> combines all n-step returns Gₜⁿ
+    - Using weight (1-λ)λ<sup>n-1</sup>
+        - ![](imgs/RL_td_lamda_return.png)
+    - Forward-view TD(λ)
+        - ![](imgs/RL_td_lamda_forward.png)
+- Question: why use a geometric weighting ?
+    - it makes an efficiently computable algorithm.
+    - geometric weighting is memoryless. That means we can do the computation in a very efficient way. It does not require either storing or computing something different for each of your n-step returns.
+    - You can do TD(λ) for the same cost of TD(0)
 
 ## Chapter 8 Planning and Learning with Tabular Methods
 
