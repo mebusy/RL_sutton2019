@@ -289,9 +289,9 @@ Bootstrapping and Sampling
  · | Bootstrapping  |  Sampling
  --- | --- | ---
  · | do not actually use the real returns, use estimated value instead | use samples, not full-width backup
- MC | dost not bootstrap  |  samples
+ MC | dost not bootstrap  |  samples (deep backups)
  DP | bootstraps  |  does not sample
- TD | bootstraps  | samples
+ TD | bootstraps  | samples (shallow backups)
 
 </details>
 
