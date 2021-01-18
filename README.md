@@ -281,6 +281,20 @@ TD exploits Markov property,Usually more efficient in Markov environments | MC d
 
 </details>
 
+<details>
+<summary>
+Bootstrapping and Sampling
+</summary>
+
+ · | Bootstrapping  |  Sampling
+ --- | --- | ---
+ · | do not actually use the real returns, use estimated value instead | use samples, not full-width backup
+ MC | dost not bootstrap  |  samples
+ DP | bootstraps  |  does not sample
+ TD | bootstraps  | samples
+
+</details>
+
 
 ## Chapter 7 n-step Bootstrapping
 
