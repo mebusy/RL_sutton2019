@@ -22,13 +22,13 @@
     - raw latex
     ```bash
     Q_{n+1} \newline
-= Q_n + \alpha_n[ R_n - Q_n ] \newline
-= \alpha_nR_n + (1-\alpha_n)Q_n \newline
-= \alpha_nR_n + (1-\alpha_n)[ \alpha_{n-1}R_{n-1} + (1-\alpha_{n-1})Q_{n-1} ] \newline
-= \alpha_nR_n + (1-\alpha_n) \alpha_{n-1}R_{n-1} + (1-\alpha_n)(1-\alpha_{n-1})Q_{n-1} \newline
-= \alpha_nR_n + (1-\alpha_n) \alpha_{n-1}R_{n-1} + (1-\alpha_n)(1-\alpha_{n-1})[ \alpha_{n-2}R_{n-2} + (1-\alpha_{n-2})Q_{n-2} ] \newline
-= \alpha_nR_n + (1-\alpha_n) \alpha_{n-1}R_{n-1} + (1-\alpha_n)(1-\alpha_{n-1})\alpha_{n-2}R_{n-2} + ... \newline
-= \sum_{j=1}^{n} ( \alpha_{j}R_{j}\prod_{i=j+1}^{n}(1-\alpha_{i}) ) + Q_1\prod_{i=1}^{n}(1-\alpha_{i})
+    = Q_n + \alpha_n[ R_n - Q_n ] \newline
+    = \alpha_nR_n + (1-\alpha_n)Q_n \newline
+    = \alpha_nR_n + (1-\alpha_n)[ \alpha_{n-1}R_{n-1} + (1-\alpha_{n-1})Q_{n-1} ] \newline
+    = \alpha_nR_n + (1-\alpha_n) \alpha_{n-1}R_{n-1} + (1-\alpha_n)(1-\alpha_{n-1})Q_{n-1} \newline
+    = \alpha_nR_n + (1-\alpha_n) \alpha_{n-1}R_{n-1} + (1-\alpha_n)(1-\alpha_{n-1})[ \alpha_{n-2}R_{n-2} + (1-\alpha_{n-2})Q_{n-2} ] \newline
+    = \alpha_nR_n + (1-\alpha_n) \alpha_{n-1}R_{n-1} + (1-\alpha_n)(1-\alpha_{n-1})\alpha_{n-2}R_{n-2} + ... \newline
+    = \sum_{j=1}^{n} ( \alpha_{j}R_{j}\prod_{i=j+1}^{n}(1-\alpha_{i}) ) + Q_1\prod_{i=1}^{n}(1-\alpha_{i})
     ```
 
 - Exercise 2.5

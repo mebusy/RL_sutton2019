@@ -24,6 +24,7 @@ def PolicyIteration( problem ):
                 v = V_prime[s]   
 
                 # V(s) <- ∑ p( s',r | s, π(s )[ r+ gamma·V(s') ] 
+                # calue Vπ, but to deal with tie break, normally you need calc Qπ
                 actions = problem.GetPolicy( s )  # here follows π
                 q_values = np.zeros( len(actions) )
                 for i,action in enumerate(actions):
