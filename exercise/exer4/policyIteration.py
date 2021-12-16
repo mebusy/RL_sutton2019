@@ -23,9 +23,10 @@ def PolicyIteration( problem ):
                 # v ← V(s)
                 v = V_prime[s]   
 
-                # V(s) <- ∑ p( s',r | s, π(s )[ r+ gamma·V(s') ] 
+                # V(s) <- ∑ p( s',r | s, π(s )[ r+ gamma·V(s') ] 
                 # calue Vπ, but to deal with tie break, normally you need calc Qπ
-                actions = problem.GetPolicy( s )  # here follows π
+                actions = problem.GetPolicy( s )  # here follows π , there may be multiple
+                                                  # equally optimal actions under π
                 q_values = np.zeros( len(actions) )
                 for i,action in enumerate(actions):
                     q_val = 0
@@ -33,7 +34,7 @@ def PolicyIteration( problem ):
                         q_val += p * ( r + Gamma * V_prime[ s_prime ] )
                     q_values[i] = q_val
                 # get new value
-                # only keep .7 for float number
+                # only keep .7 for float number , actions are evenly distributed
                 V[s] = round( q_values.mean(), 7 )
 
                 # Δ ← max( Δ , |v-V(s)| )
