@@ -210,29 +210,6 @@ Most Markov reward and decision processes are discounted. Why?
         - can evaluate a single state without forming estimates for any other states. 
 
 
-<details>
-<summary>
-<b>SARSA vs Q-Learning, On-policy VS Off-policy</b>
-</summary>
-
-- off-policy: learning is from data **off** the target policy
-- [强化学习中on-policy 与off-policy有什么区别](https://www.zhihu.com/question/57159315)
-    - 皇帝希望能多了解民间百姓的生活
-        - on-policy 微服出巡
-        - off-policy 派多个官员去了解情况
-- The most important difference is how Q is updated after each action.
-    - ![](imgs/RL-on-off-policy.jpg)
-    - SARSA uses the Q' following a ε-greedy policy exactly as A' is drawn from it.
-    - Q-learning uses the maximum Q' over all possible actions for the next step. This makes it look like following a greedy policy.
-
-· | SARSA | Q-learning
---- | --- | --- 
-choosing A' | π | π
-updating Q | π | μ
-
-where π is ε-greedy policy , and μ is a greedy policy
-
-</details>
 
 ## Chapter 6 Temporal-Difference Learning
 
@@ -285,6 +262,44 @@ has low variance, some bias | has high variance, zero bias
 TD exploits Markov property,Usually more efficient in Markov environments | MC does not exploit Markov property,Usually more effective in non-Markov environments
 
 </details>
+
+
+<details>
+<summary>
+<b>SARSA vs Q-Learning, On-policy VS Off-policy</b>
+</summary>
+
+- off-policy: learning is from data **off** the target policy
+- [强化学习中on-policy 与off-policy有什么区别](https://www.zhihu.com/question/57159315)
+    - 皇帝希望能多了解民间百姓的生活
+        - on-policy 微服出巡
+        - off-policy 派多个官员去了解情况
+- The most important difference is how Q is updated after each action.
+    - ![](imgs/RL-on-off-policy.jpg)
+    - SARSA uses the Q' following a ε-greedy policy exactly as A' is drawn from it.
+    - Q-learning uses the maximum Q' over all possible actions for the next step. This makes it look like following a greedy policy.
+
+· | SARSA | Q-learning
+--- | --- | --- 
+choosing A' | π | π
+updating Q | π | μ
+
+where π is ε-greedy policy , and μ is a greedy policy
+
+</details>
+
+
+<details>
+<summary>
+TD-Learning vs Q-Learning
+</summary>
+
+- Temporal Difference is an approach to learning how to predict a quantity that depends on future values of a given signal. 
+- It can be used to learn both the V-function and the Q-function, whereas Q-learning is a specific TD algorithm used to learn the Q-function.
+- You need the Q-function to perform an action (e.g., following an epsilon-greedy policy). If you have only the V-function you can still derive the Q-function by iterating over all the possible next states and choosing the action which leads you to the state with the highest V-value.
+
+</details>
+
 
 <details>
 <summary>
