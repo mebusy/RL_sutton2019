@@ -50,11 +50,12 @@ marked as `*` :  more difficult and not essential to the rest of the book.  Thes
 
 [Part I](book/Part%20I%20Tabular%20Solution%20Methods/Part%20I.pdf)
 
+
 The simplest RL forms: the approximate value functions to be represented as *arrays*, or *tables* , and can ofen find *exact solution*, while general RL can only find approximate solutions. 
 
-1. bandit problem
+- bandit problem
     - only a single state
-2. MDP ,  3 fundamental mothods to solve MDP:
+- MDP, 3 fundamental mothods to solve MDP:
     - dynamic programming
         - well developed mathematically
         - but require a complete and accurate model of the environment
@@ -64,7 +65,7 @@ The simplest RL forms: the approximate value functions to be represented as *arr
     - temporal-difference learning 
         - require no model and are fully incremental
         - but are more complex to analyze.
-3. combining those 3 methods to solve MDP
+- combining those 3 methods to solve MDP
 
 ## Chapter 2. Multi-armed Bandits
 
@@ -94,6 +95,27 @@ The simplest RL forms: the approximate value functions to be represented as *arr
 ## Chapter 3. Finite Markov Decision Processes
 
 [Chapter 3](book/Part%20I%20Tabular%20Solution%20Methods/03%20Finite%20MDP.pdf)
+
+[cs234 Lecture 2: Making Sequences of Good Decisions Given a Model of the World](https://nbviewer.org/github/mebusy/cs234_RL_2019_stanford/blob/main/lecture/lecture2.pdf)
+
+
+- Markov Property
+    - State s<sub>t</sub> is Markov iff:
+        - p( s<sub>t+1</sub> | s<sub>t</sub>, a<sub>t</sub> ) = p( s<sub>t+1</sub> | h<sub>t</sub>, a<sub>t</sub> ) 
+    - Future is independent of past given present
+- Markov Reward Process (MRP)
+    - Markov Chain + rewards
+    - MRP problem can be solved directly by matrix
+        - V = R + γPV
+        - **V = ( I - γP )<sup>-1</sup>R**
+    - or use an Iterative Algorithm
+- Markov Decision Process (MDP)
+    - MDP = MRP + actions
+    - **MRP = MDP + policy**
+        - Implies we can use same techniques to evaluate the value of a policy for a MDP as we could to compute the value of a MRP,
+        - by defining a MRP with R<sup>π</sup>, P<sup>π</sup>
+
+---
 
 - 3.1 The Agent–Environment Interface
     - *Markov property* states that the conditional probability distribution for the system at the next step (and in fact at all future steps) 
@@ -160,7 +182,11 @@ Most Markov reward and decision processes are discounted. Why?
         - Policy Evaluation + Policy Improvement
         - *policy evaluation*: compute the state-value function v<sub>π</sub> for an arbitrary policy π. (until converge)
         - using the value function for a policy to help find better policies.
+        - ![](imgs/rlsutton_policy_iter.png)
+        - [example source](exercise/exer4/policyIteration.py)
     - 4.4 Value Iteration
+        - ![](imgs/rlsutton_value_iter.png)
+        - [example source](exercise/exer4/valueIteration.py)
 
 ---
 
