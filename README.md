@@ -215,6 +215,8 @@ Most Markov reward and decision processes are discounted. Why?
 
 [Chapter 5](book/Part%20I%20Tabular%20Solution%20Methods/05%20Monte%20Carlo%20Methods.pdf)
 
+
+
 - **estimating** value functions, **not assume** complete knowledge of the environment, based on averaging **complete** returns (as opposed to methods that learn from partial returns).
 - Monte Carlo methods require only *experience*
     - Learning from *actual* experience requires no prior knowledge of the environment’s dynamics.
@@ -241,6 +243,10 @@ Most Markov reward and decision processes are discounted. Why?
 ## Chapter 6 Temporal-Difference Learning
 
 [Chapter 6](book/Part%20I%20Tabular%20Solution%20Methods/06%20TD-Learning.pdf)
+
+[cs234 Lecture 3: Model-Free Policy Evaluation](https://nbviewer.org/github/mebusy/cs234_RL_2019_stanford/blob/main/lecture/lecture3.pdf)
+
+[cs234 Lecture 4: Model-Free Control](https://nbviewer.org/github/mebusy/cs234_RL_2019_stanford/blob/main/lecture/Lecture%204.pdf)
 
 - TD learning is a combination of Monte Carlo ideas and dynamic programming (DP) ideas
     - can learn directly from raw experience without a model
