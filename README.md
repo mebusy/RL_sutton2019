@@ -62,6 +62,7 @@ The simplest RL forms: the approximate value functions to be represented as *arr
     - Monte Carlo methods
         - don’t require a model and are conceptually simple
         - but are not well suited for step-by-step incremental computation.
+        - *MC can also be applied to non-Markov problem*
     - temporal-difference learning 
         - require no model and are fully incremental
         - but are more complex to analyze.
