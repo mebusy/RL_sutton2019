@@ -243,7 +243,9 @@ Most Markov reward and decision processes are discounted. Why?
 
 - TD learning is a combination of Monte Carlo ideas and dynamic programming (DP) ideas
     - can learn directly from raw experience without a model
+        - using a **sample** of s<sub>t+1</sub> to approximate an expectation
     - update estimates based on other learned estimates
+        - bootstrapping, uses estimate of V( s<sub>t+1</sub> )
 - 6.1 TD Prediction
     - *bootstrapping* method
         - update base on existing estimate
