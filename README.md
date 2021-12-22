@@ -24,7 +24,7 @@ marked as `*` :  more difficult and not essential to the rest of the book.  Thes
     - delayed reward
     - considers the *whole* problem of a goal-directed agent interacting with an uncertain environment.
 - trade-off between exploration and exploitation ( for methods those need episodes sampling )
-- four main subelements
+- 4 main subelements
     1. policy
     2. reward signal
         - immediate desirability of state
@@ -41,6 +41,7 @@ marked as `*` :  more difficult and not essential to the rest of the book.  Thes
     - when part of the state is hidden,
     - or to continuous-time problems as well, 
     - model is not required, but models can easily be used,
+        - without re-building the workd model from experience, we can directly improve the policy by learning the Q-value
     - at both high and low levels in a system.
 - The use of value functions distinguishes reinforcement learning methods from evolutionary methods.
 
@@ -118,9 +119,6 @@ The simplest RL forms: the approximate value functions to be represented as *arr
 
 ---
 
-- 3.1 The Agent–Environment Interface
-    - *Markov property* states that the conditional probability distribution for the system at the next step (and in fact at all future steps) 
-        - depends ONLY on the current state of the system, and not additionally on the state of the system at previous steps.
 - 3.2 Goals and Rewards
     - It is thus critical that the rewards we set up truly indicate what we want accomplished.
         - In particular, the reward signal is not the place to impart to the agent prior knowledge about how to achieve what we want it to do.
@@ -140,10 +138,11 @@ The simplest RL forms: the approximate value functions to be represented as *arr
     - The *value* of a *state* is the expected sum of all future rewards when starting in that **state** and following a specific policy.
         - **Note that the value of the terminal state, if any, is always zero.**
             - by the definition, the value of a state v(s) is the expected sum (perhaps discounted) of rewards from all future time steps. There are no future time steps when in a terminal state, so this sum must be zero.
+        - you may get reward when you entering the terminal state; but then you take any action, the whole episode terminated. ?
     - The value functions v<sub>π</sub> and q<sub>π</sub> can be estimated from experience.
         - We call estimation methods of this kind *Monte Carlo methods* because they involve averaging over many random samples of actual returns.
 - 3.6 Optimal Policies and Optimal Value Functions
-    - Explicitly solving the Bellman optimality equation is rarely directly useful. This solution relies on at least three assumptions that are rarely true in practice: 
+    - Explicitly solving the Bellman optimality equation is **rarely** directly useful. This solution relies on at least three assumptions that are rarely true in practice: 
         1. know the exact MDP
         2. have enough computational resources
         3. the Markov property
