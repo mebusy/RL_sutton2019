@@ -190,7 +190,7 @@ Most Markov reward and decision processes are discounted. Why?
 
 ---
 
-- Ideas
+- Generalized Policy Iteration
     - Does policy evaluation need to converge to v<sub>π</sub>?  No.
     - Or shoud we introduce a stopping condition 
         - e.g. ε-convergence of value function
