@@ -23,7 +23,7 @@ marked as `*` :  more difficult and not essential to the rest of the book.  Thes
     - trial-and-error search 
     - delayed reward
     - considers the *whole* problem of a goal-directed agent interacting with an uncertain environment.
-- trade-off between exploration and exploitation
+- trade-off between exploration and exploitation ( for methods those need episodes sampling )
 - four main subelements
     1. policy
     2. reward signal
