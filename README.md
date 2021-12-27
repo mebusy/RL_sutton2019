@@ -343,7 +343,7 @@ Bootstrapping and Sampling, MC,DP,TD
  · | Bootstrapping  |  Sampling
  --- | --- | ---
  · | do not actually use the real returns, use estimated value instead | use samples, not full-width backup
- MC | dost not bootstrap  |  samples (deep backups)
+ MC | dost not bootstrap <br>estimates for each state are independent  |  samples (deep backups)
  DP | bootstraps  |  does not sample (shallow backups)
  TD | bootstraps  | samples (shallow backups)
 
