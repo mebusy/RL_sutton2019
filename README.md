@@ -227,9 +227,12 @@ Most Markov reward and decision processes are discounted. Why?
     - If a model is not available, state-value alone is not sufficient to determine a policy.
     - The only complication is that many state–action pairs may never be visited. For policy evaluation to work for action values, we must assure continual exploration.
 - 5.3 Monte Carlo Control
-    - Monte Carlo ES(Exploring Starts) , After each episode , do evaluation and improvement
 - 5.4 Monte Carlo Control without Exploring Starts
     - **On-policy first-visit MC control** (for ε-soft policies)
+        - from book
+            - ![](imgs/mc_on_policy_algorithm_book.png)
+        - from cs234
+            - ![](imgs/mc_on_policy_algorithm.png)
 - 5.5 Off-policy Prediction via Importance Sampling
 - Advantage than DP
     1. with no model of the environment’s dynamic
@@ -237,7 +240,29 @@ Most Markov reward and decision processes are discounted. Why?
     3. the estimates for each state are independent
         - can evaluate a single state without forming estimates for any other states. 
 
+----------
 
+- Q value
+    - With a model, state values alone are sufficient to determine a policy
+        - one simply looks ahead one step and chooses the optimal action 
+    - Without a model, however, state values alone are not sufficient. 
+        - One must explicitly estimate the value of each action in order for the values to be useful in suggesting a policy. 
+
+<details>
+<summary>
+<b>On-Policy VS Off-Policy</b>
+</summary>
+
+- on-policy
+    - learn from DIRECT experience obtained from following that policy
+- off-policy: learning is from data **off** the target policy
+    - learn by using experience gathered from following a different policy
+    - we can combine experience for trying out different things to try to learn about something we didn’t do by itself.
+    - Imagine you have a case  where there’s only a single state for now. 
+        - You experienced s1,a1,s1,a2; and s1,a2,s1,a2.
+        - So you’d like to be able to kind of combine between these experiences so you could learn about doing this: s1,a1,s1,a2, even though you’ve never done that in the world.
+
+</details>
 
 ## Chapter 6 Temporal-Difference Learning
 
@@ -261,7 +286,9 @@ Most Markov reward and decision processes are discounted. Why?
     - are naturally implemented in an online, fully incremental fashion ( over MC )
         - some applications have very long episodes, other applications are continuing tasks and have no episodes at all
 - 6.4 Sarsa: On-policy TD Control
+    - ![](imgs/td_sarsa_algorithm.png)
 - 6.5 Q-learning: Off-policy TD Control
+    - ![](imgs/td_q_learning_algorithm.png)
 - 6.6 Expected Sarsa
     - when updating Q value, use expected value instead of max ( compare with Q-learning )
 - 6.7 Maximization Bias and Double Learning
@@ -300,14 +327,10 @@ TD exploits Markov property,Usually more efficient in Markov environments | MC d
 
 <details>
 <summary>
-<b>SARSA vs Q-Learning, On-policy VS Off-policy</b>
+<b>SARSA vs Q-Learning</b>
 </summary>
 
-- off-policy: learning is from data **off** the target policy
-- [强化学习中on-policy 与off-policy有什么区别](https://www.zhihu.com/question/57159315)
-    - 皇帝希望能多了解民间百姓的生活
-        - on-policy 微服出巡
-        - off-policy 派多个官员去了解情况
+- SARSA is a on-policy algorithm, while Q-Learning is off-policy
 - The most important difference is how Q is updated after each action.
     - ![](imgs/RL-on-off-policy.jpg)
     - SARSA uses the Q' following a ε-greedy policy exactly as A' is drawn from it.
