@@ -138,7 +138,7 @@ The simplest RL forms: the approximate value functions to be represented as *arr
     - The *value* of a *state* is the expected sum of all future rewards when starting in that **state** and following a specific policy.
         - **Note that the value of the terminal state, if any, is always zero.**
             - by the definition, the value of a state v(s) is the expected sum (perhaps discounted) of rewards from all future time steps. There are no future time steps when in a terminal state, so this sum must be zero.
-        - you may get reward when you entering the terminal state; but then you take any action, the whole episode terminated. ?
+        - you may get reward when you entering the terminal state; but then you take any action the whole episode terminated. 
     - The value functions v<sub>π</sub> and q<sub>π</sub> can be estimated from experience.
         - We call estimation methods of this kind *Monte Carlo methods* because they involve averaging over many random samples of actual returns.
 - 3.6 Optimal Policies and Optimal Value Functions
