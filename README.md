@@ -373,6 +373,25 @@ Bootstrapping and Sampling, MC,DP,TD
 </details>
 
 
+<details>
+<summary>
+Q-Learning, Approximate Q-Learning, Deep Q Learning
+</summary>
+
+- Q-learning
+    - update Q value from step forward
+- Approximate Q-Learning
+    - custom features, describe a q-state (s, a) with features, that is, encode action within features (e.g. action moves closer to food, or manhanttan distance to nearest dot after executing action a in s)
+    - update weights from step forward
+    - Linear Approximation: Regression
+        - Optimization: Least Squares
+        - update:  ![](https://github.com/mebusy/notes/raw/master/imgs/cs188_minimize_err_in_QL.png)
+- Deep Q Learning
+    - automatical feature extraction, abstraction, classification, etc...
+
+</details>
+
+
 ## Chapter 7 n-step Bootstrapping
 
 [Chapter 7](book/Part%20I%20Tabular%20Solution%20Methods/07-n-step-Bootstrapping.pdf)
