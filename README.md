@@ -379,15 +379,16 @@ Q-Learning, Approximate Q-Learning, Deep Q Learning
 </summary>
 
 - Q-learning
-    - update Q value from step forward
+    - update Q value from every step forward
 - Approximate Q-Learning
     - custom features, describe a q-state (s, a) with features, that is, encode action within features (e.g. action moves closer to food, or manhanttan distance to nearest dot after executing action a in s)
-    - update weights from step forward
+    - update weights from every step forward
     - Linear Approximation: Regression
         - Optimization: Least Squares
         - update:  ![](https://github.com/mebusy/notes/raw/master/imgs/cs188_minimize_err_in_QL.png)
 - Deep Q Learning
     - automatical feature extraction, abstraction, classification, etc...
+    - batch samples training
 
 </details>
 
